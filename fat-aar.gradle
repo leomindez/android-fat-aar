@@ -135,11 +135,11 @@ afterEvaluate {
     if (dependencies.size() > 0) {
         // Merge Assets
         generateReleaseAssets.dependsOn embedAssets
-        embedAssets.dependsOn prepareReleaseDependencies
+        embedAssets.dependsOn generateReleaseDependencies
 
         // Embed Resources by overwriting the inputResourceSets
         packageReleaseResources.dependsOn embedLibraryResources
-        embedLibraryResources.dependsOn prepareReleaseDependencies
+        embedLibraryResources.dependsOn generateReleaseDependencies
 
         // Embed JNI Libraries
         bundleRelease.dependsOn embedJniLibs
@@ -159,7 +159,7 @@ afterEvaluate {
 
         // Merge proguard files
         embedLibraryResources.dependsOn embedProguard
-        embedProguard.dependsOn prepareReleaseDependencies
+        embedProguard.dependsOn generateReleaseDependencies
 
         // Generate R.java files
         compileReleaseJavaWithJavac.dependsOn generateRJava
